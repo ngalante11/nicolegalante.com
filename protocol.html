@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fourth Space Reflection Protocol | Nicole Galante</title>
+  <meta name="description" content="An interactive tool for the Fourth Space Reflection Protocol — a framework for teaching that honors reflection, identity, contact zones, and justice.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    :root {
+      --sage: #A7B9A5;
+      --sage-light: #c4d1c3;
+      --ink-fig: #5F4B8B;
+      --cream: #F8F3EF;
+      --cream-dark: #efe8e1;
+      --apricot: #F3C9A3;
+      --clay: #D4856A;
+      --forest: #2d3d2d;
+      --text: #2d2a2e;
+      --text-secondary: #5a5658;
+      --text-muted: #8a8688;
+      --white: #ffffff;
+      --border: #e8e4df;
+    }
+    
+    body {
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+      color: var(--text);
+      background: var(--cream);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+    
+    h1, h2, h3, h4 { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 500; }
+    
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+    
+    /* Header */
+    header {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 1.5rem 0;
+    }
+    header .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 22px; color: var(--forest); text-decoration: none; }
+    .back-link { font-size: 13px; color: var(--text-secondary); text-decoration: none; letter-spacing: 0.05em; }
+    .back-link:hover { color: var(--ink-fig); }
+    
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 4rem 0 3rem;
+    }
+    .hero-eyebrow {
+      font-size: 10px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--clay);
+      margin-bottom: 1rem;
+    }
+    .hero h1 {
+      font-size: clamp(32px, 5vw, 48px);
+      color: var(--forest);
+      margin-bottom: 1rem;
+    }
+    .hero p {
+      font-size: 17px;
+      color: var(--text-secondary);
+      max-width: 650px;
+      margin: 0 auto;
+    }
+    
+    /* Protocol Container */
+    .protocol-container {
+      background: var(--white);
+      border: 1px solid var(--border);
+      padding: 2.5rem;
+      margin-bottom: 3rem;
+    }
+    
+    /* Toggles */
+    .protocol-toggles {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      margin-bottom: 2.5rem;
+      flex-wrap: wrap;
+    }
+    .toggle-group {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .toggle-label {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .toggle-switch {
+      display: flex;
+      background: var(--cream);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+    .toggle-option {
+      padding: 10px 20px;
+      font-size: 12px;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      transition: all 0.3s;
+      border: none;
+      background: transparent;
+      color: var(--text-secondary);
+    }
+    .toggle-option.active {
+      background: var(--forest);
+      color: var(--cream);
+    }
+    .toggle-option:hover:not(.active) {
+      background: var(--cream-dark);
+    }
+    
+    /* Grid */
+    .protocol-grid {
+      display: grid;
+      grid-template-columns: 90px repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border);
+      font-size: 13px;
+    }
+    
+    .grid-header {
+      background: var(--forest);
+      color: var(--cream);
+      padding: 14px 10px;
+      text-align: center;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 400;
+    }
+    
+    .grid-level {
+      background: var(--cream);
+      padding: 12px 8px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 4px;
+    }
+    .grid-level.alt { background: var(--cream-dark); }
+    .level-num {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--ink-fig);
+    }
+    .level-name {
+      font-size: 8px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    
+    .grid-cell {
+      background: var(--white);
+      padding: 14px 12px;
+      text-align: center;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.25s ease;
+      position: relative;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+    .grid-cell.alt { background: var(--cream); }
+    .grid-cell:hover {
+      background: var(--sage-light);
+      color: var(--forest);
+    }
+    .grid-cell.selected {
+      background: var(--ink-fig);
+      color: var(--white);
+    }
+    .grid-cell.selected::after {
+      content: '✓';
+      position: absolute;
+      top: 6px;
+      right: 8px;
+      font-size: 10px;
+    }
+    
+    /* Central Question */
+    .central-question {
+      text-align: center;
+      margin-top: 2.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+    .central-question p {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 26px;
+      font-style: italic;
+      color: var(--ink-fig);
+    }
+    
+    /* Selection Summary */
+    .selection-summary {
+      margin-top: 2.5rem;
+      padding: 2rem;
+      background: var(--cream);
+      border: 1px solid var(--border);
+      display: none;
+    }
+    .selection-summary.visible { display: block; }
+    .selection-summary h4 {
+      font-size: 18px;
+      margin-bottom: 1rem;
+      color: var(--forest);
+    }
+    .selected-items {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+    .selected-tag {
+      background: var(--ink-fig);
+      color: var(--white);
+      padding: 8px 16px;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .selected-tag button {
+      background: none;
+      border: none;
+      color: var(--white);
+      cursor: pointer;
+      font-size: 14px;
+      opacity: 0.7;
+    }
+    .selected-tag button:hover { opacity: 1; }
+    
+    /* Actions */
+    .protocol-actions {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+    .btn {
+      padding: 14px 32px;
+      font-family: 'Lato', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.3s;
+      border: none;
+    }
+    .btn-primary { background: var(--forest); color: var(--cream); }
+    .btn-primary:hover { background: var(--ink-fig); }
+    .btn-secondary { background: transparent; color: var(--forest); border: 1px solid var(--forest); }
+    .btn-secondary:hover { background: var(--forest); color: var(--cream); }
+    
+    /* Example Walkthrough */
+    .example-panel {
+      margin-top: 2rem;
+      padding: 2rem;
+      background: linear-gradient(135deg, var(--ink-fig) 0%, #4a3a6d 100%);
+      color: var(--cream);
+      display: none;
+    }
+    .example-panel.visible { display: block; }
+    .example-panel h4 {
+      font-size: 20px;
+      margin-bottom: 0.5rem;
+    }
+    .example-scenario {
+      font-style: italic;
+      opacity: 0.85;
+      margin-bottom: 1.5rem;
+      font-size: 15px;
+    }
+    .example-steps {
+      display: grid;
+      gap: 1rem;
+    }
+    .example-step {
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      gap: 1rem;
+      padding: 1rem;
+      background: rgba(255,255,255,0.08);
+      align-items: start;
+    }
+    .step-label {
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      opacity: 0.7;
+    }
+    .step-content { font-size: 14px; line-height: 1.6; }
+    .close-example {
+      margin-top: 1.5rem;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: var(--cream);
+      padding: 12px 24px;
+      cursor: pointer;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .close-example:hover { background: rgba(255,255,255,0.25); }
+    
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 3rem 0;
+      color: var(--text-muted);
+      font-size: 13px;
+    }
+    footer a { color: var(--ink-fig); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+    
+    /* Responsive */
+    @media (max-width: 800px) {
+      .protocol-grid {
+        grid-template-columns: 70px repeat(4, 1fr);
+        font-size: 10px;
+      }
+      .grid-header { padding: 10px 6px; font-size: 8px; }
+      .grid-cell { padding: 10px 6px; font-size: 10px; }
+      .level-num { font-size: 16px; }
+      .protocol-toggles { gap: 1.5rem; }
+      .example-step { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container">
+      <a href="index.html" class="logo">Nicole Galante</a>
+      <a href="index.html" class="back-link">← Back to main site</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <p class="hero-eyebrow">Interactive Tool</p>
+        <h1>Fourth Space Reflection Protocol</h1>
+        <p>Click any cell to mark your reflection journey. Use the toggles to frame your practice. This protocol extends beyond Bloom's Taxonomy to include a seventh level — Inspire — where reflection becomes action that shapes others.</p>
+      </div>
+    </section>
+
+    <section class="container">
+      <div class="protocol-container">
+        
+        <div class="protocol-toggles">
+          <div class="toggle-group">
+            <span class="toggle-label">Visibility</span>
+            <div class="toggle-switch">
+              <button class="toggle-option active" data-group="visibility" data-value="public">Public</button>
+              <button class="toggle-option" data-group="visibility" data-value="private">Private</button>
+            </div>
+          </div>
+          <div class="toggle-group">
+            <span class="toggle-label">Mode</span>
+            <div class="toggle-switch">
+              <button class="toggle-option active" data-group="mode" data-value="individual">Individual</button>
+              <button class="toggle-option" data-group="mode" data-value="communal">Communal</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="protocol-grid" id="protocol-grid">
+          <!-- Header row -->
+          <div class="grid-header">Level</div>
+          <div class="grid-header">Reflection</div>
+          <div class="grid-header">Identity</div>
+          <div class="grid-header">Contact Zone</div>
+          <div class="grid-header">Justice</div>
+          
+          <!-- Level 1 -->
+          <div class="grid-level"><span class="level-num">1</span><span class="level-name">Remember</span></div>
+          <div class="grid-cell" data-level="1" data-col="reflection">What happened?</div>
+          <div class="grid-cell" data-level="1" data-col="identity">Which space was I in?</div>
+          <div class="grid-cell" data-level="1" data-col="contact">What conflict arose?</div>
+          <div class="grid-cell" data-level="1" data-col="justice">Which issues emerged?</div>
+          
+          <!-- Level 2 -->
+          <div class="grid-level alt"><span class="level-num">2</span><span class="level-name">Understand</span></div>
+          <div class="grid-cell alt" data-level="2" data-col="reflection">Why does it matter?</div>
+          <div class="grid-cell alt" data-level="2" data-col="identity">Which identity aspects?</div>
+          <div class="grid-cell alt" data-level="2" data-col="contact">Which cultures met?</div>
+          <div class="grid-cell alt" data-level="2" data-col="justice">Why address this?</div>
+          
+          <!-- Level 3 -->
+          <div class="grid-level"><span class="level-num">3</span><span class="level-name">Apply</span></div>
+          <div class="grid-cell" data-level="3" data-col="reflection">How can I use this?</div>
+          <div class="grid-cell" data-level="3" data-col="identity">How did it shape me?</div>
+          <div class="grid-cell" data-level="3" data-col="contact">How did it affect each?</div>
+          <div class="grid-cell" data-level="3" data-col="justice">What's the future impact?</div>
+          
+          <!-- Level 4 -->
+          <div class="grid-level alt"><span class="level-num">4</span><span class="level-name">Analyze</span></div>
+          <div class="grid-cell alt" data-level="4" data-col="reflection">What patterns emerge?</div>
+          <div class="grid-cell alt" data-level="4" data-col="identity">What identity patterns?</div>
+          <div class="grid-cell alt" data-level="4" data-col="contact">Where was the struggle?</div>
+          <div class="grid-cell alt" data-level="4" data-col="justice">What issue patterns?</div>
+          
+          <!-- Level 5 -->
+          <div class="grid-level"><span class="level-num">5</span><span class="level-name">Evaluate</span></div>
+          <div class="grid-cell" data-level="5" data-col="reflection">How well did I do?</div>
+          <div class="grid-cell" data-level="5" data-col="identity">How am I developing?</div>
+          <div class="grid-cell" data-level="5" data-col="contact">How did each group fare?</div>
+          <div class="grid-cell" data-level="5" data-col="justice">Was it addressed?</div>
+          
+          <!-- Level 6 -->
+          <div class="grid-level alt"><span class="level-num">6</span><span class="level-name">Create</span></div>
+          <div class="grid-cell alt" data-level="6" data-col="reflection">What will I do next?</div>
+          <div class="grid-cell alt" data-level="6" data-col="identity">What's my next growth?</div>
+          <div class="grid-cell alt" data-level="6" data-col="contact">How will I engage next?</div>
+          <div class="grid-cell alt" data-level="6" data-col="justice">What action will I take?</div>
+          
+          <!-- Level 7 -->
+          <div class="grid-level"><span class="level-num">7</span><span class="level-name">Inspire</span></div>
+          <div class="grid-cell" data-level="7" data-col="reflection">How can I inspire others?</div>
+          <div class="grid-cell" data-level="7" data-col="identity">How can I shape others?</div>
+          <div class="grid-cell" data-level="7" data-col="contact">How can I bridge divides?</div>
+          <div class="grid-cell" data-level="7" data-col="justice">How can I inspire action?</div>
+        </div>
+
+        <div class="central-question">
+          <p>"Who am I becoming in different spaces?"</p>
+        </div>
+
+        <div class="selection-summary" id="selection-summary">
+          <h4>Your Reflection Focus</h4>
+          <div class="selected-items" id="selected-items"></div>
+        </div>
+
+        <div class="protocol-actions">
+          <button class="btn btn-secondary" id="clear-btn">Clear All</button>
+          <button class="btn btn-primary" id="example-btn">Walk Through an Example</button>
+        </div>
+
+        <div class="example-panel" id="example-panel">
+          <h4>Example: Teaching a Lesson on AI-Generated Text</h4>
+          <p class="example-scenario">A 10th grade English teacher uses ChatGPT output as a mentor text. Students react with confusion and skepticism.</p>
+          <div class="example-steps">
+            <div class="example-step">
+              <div><span class="step-label">Level 1 — Remember</span></div>
+              <div class="step-content"><strong>Reflection:</strong> Students questioned whether the text was "real." <strong>Contact Zone:</strong> Human authorship vs. machine generation created tension.</div>
+            </div>
+            <div class="example-step">
+              <div><span class="step-label">Level 3 — Apply</span></div>
+              <div class="step-content"><strong>Identity:</strong> The teacher realized her own discomfort with AI tools was visible to students. <strong>Justice:</strong> Whose voices are amplified or erased by AI training data?</div>
+            </div>
+            <div class="example-step">
+              <div><span class="step-label">Level 5 — Evaluate</span></div>
+              <div class="step-content"><strong>Reflection:</strong> The lesson generated productive confusion but lacked closure. <strong>Contact Zone:</strong> Students from different backgrounds had vastly different AI exposure.</div>
+            </div>
+            <div class="example-step">
+              <div><span class="step-label">Level 7 — Inspire</span></div>
+              <div class="step-content"><strong>Justice:</strong> How can this lesson model critical AI literacy for other teachers? <strong>Identity:</strong> How can I share my learning-in-public with colleagues?</div>
+            </div>
+          </div>
+          <button class="close-example" id="close-example">Close Example</button>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>Fourth Space Reflection Protocol © 2026 <a href="index.html">Nicole Galante, Ph.D.</a></p>
+      <p style="margin-top: 0.5rem;">From <em>Mentor from the Center: Reimagining Education for an AI-Driven World</em></p>
+    </div>
+  </footer>
+
+  <script>
+    // Toggle functionality
+    document.querySelectorAll('.toggle-option').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const group = btn.dataset.group;
+        document.querySelectorAll(`[data-group="${group}"]`).forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
+    });
+
+    // Cell selection
+    const cells = document.querySelectorAll('.grid-cell');
+    const summaryEl = document.getElementById('selection-summary');
+    const selectedItemsEl = document.getElementById('selected-items');
+    
+    function updateSummary() {
+      const selected = document.querySelectorAll('.grid-cell.selected');
+      if (selected.length === 0) {
+        summaryEl.classList.remove('visible');
+        return;
+      }
+      
+      summaryEl.classList.add('visible');
+      selectedItemsEl.innerHTML = '';
+      
+      selected.forEach(cell => {
+        const tag = document.createElement('div');
+        tag.className = 'selected-tag';
+        tag.innerHTML = `
+          <span>L${cell.dataset.level} ${cell.dataset.col}: ${cell.textContent}</span>
+          <button data-level="${cell.dataset.level}" data-col="${cell.dataset.col}">×</button>
+        `;
+        selectedItemsEl.appendChild(tag);
+      });
+      
+      // Add remove handlers
+      selectedItemsEl.querySelectorAll('button').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const cell = document.querySelector(`.grid-cell[data-level="${btn.dataset.level}"][data-col="${btn.dataset.col}"]`);
+          cell.classList.remove('selected');
+          updateSummary();
+        });
+      });
+    }
+
+    cells.forEach(cell => {
+      cell.addEventListener('click', () => {
+        cell.classList.toggle('selected');
+        updateSummary();
+      });
+    });
+
+    // Clear all
+    document.getElementById('clear-btn').addEventListener('click', () => {
+      cells.forEach(cell => cell.classList.remove('selected'));
+      updateSummary();
+    });
+
+    // Example panel
+    document.getElementById('example-btn').addEventListener('click', () => {
+      document.getElementById('example-panel').classList.add('visible');
+    });
+    document.getElementById('close-example').addEventListener('click', () => {
+      document.getElementById('example-panel').classList.remove('visible');
+    });
+  </script>
+
+</body>
+</html>
