@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fourth Space Reflection Journal | Nicole Galante</title>
+  <meta name="description" content="A guided reflection tool based on the Fourth Space Protocol. Walk through seven levels of reflection across four dimensions.">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Reflect">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    :root {
+      --sage: #A7B9A5;
+      --sage-light: #d4e0d3;
+      --ink-fig: #5F4B8B;
+      --ink-fig-light: #8b7aad;
+      --cream: #F8F3EF;
+      --cream-dark: #efe8e1;
+      --apricot: #F3C9A3;
+      --clay: #D4856A;
+      --forest: #2d3d2d;
+      --text: #2d2a2e;
+      --text-secondary: #5a5658;
+      --text-muted: #8a8688;
+      --white: #ffffff;
+      --border: #e8e4df;
+      --success: #6a9a68;
+    }
+    
+    body {
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+      color: var(--text);
+      background: var(--cream);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+    
+    h1, h2, h3, h4 { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 500; }
+    
+    /* Header */
+    header {
+      background: var(--forest);
+      color: var(--cream);
+      padding: 1.25rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .header-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 20px;
+      color: var(--cream);
+      text-decoration: none;
+    }
+    .header-actions {
+      display: flex;
+      gap: 1rem;
+    }
+    .header-btn {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: var(--cream);
+      padding: 8px 16px;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-family: 'Lato', sans-serif;
+    }
+    .header-btn:hover {
+      background: rgba(255,255,255,0.2);
+    }
+    
+    /* Main container */
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    
+    /* Intro */
+    .intro {
+      text-align: center;
+      padding: 3rem 0;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 2rem;
+    }
+    .intro h1 {
+      font-size: clamp(28px, 5vw, 40px);
+      color: var(--forest);
+      margin-bottom: 1rem;
+    }
+    .intro p {
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto 2rem;
+    }
+    .central-question {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 24px;
+      font-style: italic;
+      color: var(--ink-fig);
+    }
+    
+    /* Toggles */
+    .toggles {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      padding: 1.5rem;
+      background: var(--white);
+      border: 1px solid var(--border);
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+    .toggle-group {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .toggle-label {
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .toggle-switch {
+      display: flex;
+      border: 1px solid var(--border);
+    }
+    .toggle-option {
+      padding: 8px 16px;
+      font-size: 11px;
+      cursor: pointer;
+      transition: all 0.3s;
+      border: none;
+      background: var(--white);
+      color: var(--text-secondary);
+      font-family: 'Lato', sans-serif;
+    }
+    .toggle-option.active {
+      background: var(--forest);
+      color: var(--cream);
+    }
+    
+    /* Progress */
+    .progress-bar {
+      background: var(--border);
+      height: 4px;
+      margin-bottom: 2rem;
+      position: relative;
+    }
+    .progress-fill {
+      background: linear-gradient(90deg, var(--sage) 0%, var(--ink-fig) 100%);
+      height: 100%;
+      transition: width 0.5s ease;
+    }
+    .progress-text {
+      text-align: center;
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 0.5rem;
+    }
+    
+    /* Level cards */
+    .level-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      margin-bottom: 1.5rem;
+      transition: all 0.3s ease;
+    }
+    .level-card.active {
+      border-color: var(--ink-fig);
+      box-shadow: 0 8px 30px rgba(95, 75, 139, 0.1);
+    }
+    .level-card.completed {
+      border-color: var(--sage);
+    }
+    
+    .level-header {
+      display: flex;
+      align-items: center;
+      padding: 1.25rem 1.5rem;
+      cursor: pointer;
+      gap: 1rem;
+      transition: background 0.3s;
+    }
+    .level-header:hover {
+      background: var(--cream);
+    }
+    .level-num {
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 22px;
+      font-weight: 500;
+      color: var(--ink-fig);
+      background: var(--cream);
+      border: 1px solid var(--border);
+      flex-shrink: 0;
+      transition: all 0.3s;
+    }
+    .level-card.completed .level-num {
+      background: var(--sage);
+      border-color: var(--sage);
+      color: var(--white);
+    }
+    .level-card.completed .level-num::after {
+      content: '✓';
+      font-size: 18px;
+    }
+    .level-card.completed .level-num span { display: none; }
+    
+    .level-info { flex: 1; }
+    .level-name {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 22px;
+      color: var(--forest);
+      margin-bottom: 0.25rem;
+    }
+    .level-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    .level-toggle {
+      font-size: 20px;
+      color: var(--text-muted);
+      transition: transform 0.3s;
+    }
+    .level-card.active .level-toggle {
+      transform: rotate(180deg);
+    }
+    
+    .level-body {
+      display: none;
+      padding: 0 1.5rem 1.5rem;
+    }
+    .level-card.active .level-body {
+      display: block;
+    }
+    
+    /* Dimension prompts */
+    .dimension {
+      margin-bottom: 1.5rem;
+    }
+    .dimension:last-child {
+      margin-bottom: 0;
+    }
+    .dimension-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+    .dimension-icon {
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      border-radius: 50%;
+    }
+    .dimension-icon.reflection { background: var(--cream-dark); }
+    .dimension-icon.identity { background: #e8dff0; }
+    .dimension-icon.contact { background: #fce8de; }
+    .dimension-icon.justice { background: #dce8dc; }
+    
+    .dimension-name {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      font-weight: 400;
+    }
+    .dimension-prompt {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 18px;
+      font-style: italic;
+      color: var(--forest);
+      margin-bottom: 0.75rem;
+    }
+    .dimension-textarea {
+      width: 100%;
+      min-height: 80px;
+      padding: 1rem;
+      border: 1px solid var(--border);
+      font-family: 'Lato', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      resize: vertical;
+      transition: all 0.3s;
+      background: var(--cream);
+    }
+    .dimension-textarea:focus {
+      outline: none;
+      border-color: var(--ink-fig);
+      background: var(--white);
+    }
+    .dimension-textarea::placeholder {
+      color: var(--text-muted);
+      font-style: italic;
+    }
+    
+    /* Summary section */
+    .summary-section {
+      background: var(--white);
+      border: 1px solid var(--border);
+      padding: 2rem;
+      margin-top: 2rem;
+    }
+    .summary-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .summary-header h3 {
+      font-size: 26px;
+      color: var(--forest);
+    }
+    .summary-actions {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+    .btn {
+      padding: 12px 24px;
+      font-family: 'Lato', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s;
+      border: none;
+    }
+    .btn-primary {
+      background: var(--forest);
+      color: var(--cream);
+    }
+    .btn-primary:hover {
+      background: var(--ink-fig);
+    }
+    .btn-secondary {
+      background: transparent;
+      color: var(--forest);
+      border: 1px solid var(--forest);
+    }
+    .btn-secondary:hover {
+      background: var(--forest);
+      color: var(--cream);
+    }
+    .btn-danger {
+      background: transparent;
+      color: var(--clay);
+      border: 1px solid var(--clay);
+    }
+    .btn-danger:hover {
+      background: var(--clay);
+      color: var(--white);
+    }
+    
+    .summary-content {
+      background: var(--cream);
+      padding: 1.5rem;
+      border: 1px solid var(--border);
+      max-height: 400px;
+      overflow-y: auto;
+    }
+    .summary-empty {
+      text-align: center;
+      padding: 2rem;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+    .summary-level {
+      margin-bottom: 1.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .summary-level:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+    .summary-level-name {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 18px;
+      color: var(--ink-fig);
+      margin-bottom: 0.75rem;
+    }
+    .summary-dimension {
+      margin-bottom: 0.75rem;
+    }
+    .summary-dimension-label {
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.25rem;
+    }
+    .summary-dimension-text {
+      font-size: 14px;
+      color: var(--text);
+      line-height: 1.6;
+    }
+    
+    /* Toast notification */
+    .toast {
+      position: fixed;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: var(--forest);
+      color: var(--cream);
+      padding: 1rem 2rem;
+      font-size: 14px;
+      opacity: 0;
+      transition: all 0.4s ease;
+      z-index: 1000;
+    }
+    .toast.visible {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+    
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 3rem 2rem;
+      color: var(--text-muted);
+      font-size: 13px;
+      border-top: 1px solid var(--border);
+      margin-top: 3rem;
+    }
+    footer a {
+      color: var(--ink-fig);
+      text-decoration: none;
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
+    
+    /* Responsive */
+    @media (max-width: 600px) {
+      main { padding: 1rem; }
+      .intro { padding: 2rem 0; }
+      .toggles { padding: 1rem; gap: 1rem; }
+      .level-header { padding: 1rem; }
+      .level-body { padding: 0 1rem 1rem; }
+      .summary-section { padding: 1.25rem; }
+      .header-inner { flex-direction: column; gap: 1rem; }
+      .btn { padding: 10px 18px; font-size: 10px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <a href="index.html" class="logo">Fourth Space Reflection Journal</a>
+      <div class="header-actions">
+        <button class="header-btn" onclick="newReflection()">New Reflection</button>
+        <button class="header-btn" onclick="exportPDF()">Export PDF</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="intro">
+      <h1>Reflection Journal</h1>
+      <p>Walk through seven levels of reflection across four dimensions. Your responses are saved automatically in your browser — come back anytime to continue or review.</p>
+      <p class="central-question">"Who am I becoming in different spaces?"</p>
+    </section>
+
+    <section class="toggles">
+      <div class="toggle-group">
+        <span class="toggle-label">This reflection is</span>
+        <div class="toggle-switch">
+          <button class="toggle-option active" data-field="visibility" data-value="public">Public</button>
+          <button class="toggle-option" data-field="visibility" data-value="private">Private</button>
+        </div>
+      </div>
+      <div class="toggle-group">
+        <span class="toggle-label">Mode</span>
+        <div class="toggle-switch">
+          <button class="toggle-option active" data-field="mode" data-value="individual">Individual</button>
+          <button class="toggle-option" data-field="mode" data-value="communal">Communal</button>
+        </div>
+      </div>
+    </section>
+
+    <div class="progress-bar">
+      <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
+    </div>
+    <p class="progress-text"><span id="progress-count">0</span> of 28 prompts answered</p>
+
+    <section class="levels" id="levels-container">
+      <!-- Levels will be generated by JS -->
+    </section>
+
+    <section class="summary-section">
+      <div class="summary-header">
+        <h3>Your Reflection Summary</h3>
+        <div class="summary-actions">
+          <button class="btn btn-secondary" onclick="copyToClipboard()">Copy Text</button>
+          <button class="btn btn-primary" onclick="exportPDF()">Download PDF</button>
+          <button class="btn btn-danger" onclick="clearAll()">Clear All</button>
+        </div>
+      </div>
+      <div class="summary-content" id="summary-content">
+        <p class="summary-empty">Start reflecting above to see your summary here.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Fourth Space Reflection Protocol © 2026 <a href="index.html">Nicole Galante, Ph.D.</a></p>
+    <p style="margin-top: 0.5rem;">From <em>Mentor from the Center: Reimagining Education for an AI-Driven World</em></p>
+  </footer>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    // Protocol data
+    const levels = [
+      {
+        num: 1,
+        name: 'Remember',
+        desc: 'Recall the experience',
+        prompts: {
+          reflection: 'What happened?',
+          identity: 'Which space was I in when this occurred?',
+          contact: 'What conflict or tension arose?',
+          justice: 'Which equity issues emerged?'
+        }
+      },
+      {
+        num: 2,
+        name: 'Understand',
+        desc: 'Make meaning of the experience',
+        prompts: {
+          reflection: 'Why does this matter?',
+          identity: 'Which aspects of my identity were present?',
+          contact: 'Which cultures or perspectives met?',
+          justice: 'Why is this issue important to address?'
+        }
+      },
+      {
+        num: 3,
+        name: 'Apply',
+        desc: 'Connect to practice',
+        prompts: {
+          reflection: 'How can I use this insight again?',
+          identity: 'How did this experience shape who I am?',
+          contact: 'How did it affect each group involved?',
+          justice: 'What is the future impact of this issue?'
+        }
+      },
+      {
+        num: 4,
+        name: 'Analyze',
+        desc: 'Identify patterns',
+        prompts: {
+          reflection: 'What patterns do I notice?',
+          identity: 'What patterns appear in how I show up?',
+          contact: 'Where was the core struggle?',
+          justice: 'What systemic patterns connect to this issue?'
+        }
+      },
+      {
+        num: 5,
+        name: 'Evaluate',
+        desc: 'Assess the experience',
+        prompts: {
+          reflection: 'How well did I navigate this?',
+          identity: 'How am I developing as a professional?',
+          contact: 'How did each group fare in this encounter?',
+          justice: 'Was the issue adequately addressed?'
+        }
+      },
+      {
+        num: 6,
+        name: 'Create',
+        desc: 'Plan next steps',
+        prompts: {
+          reflection: 'What will I do differently next time?',
+          identity: 'What is my next area for growth?',
+          contact: 'How will I engage across difference next?',
+          justice: 'What concrete action will I take?'
+        }
+      },
+      {
+        num: 7,
+        name: 'Inspire',
+        desc: 'Extend to others',
+        prompts: {
+          reflection: 'How can I share this learning with others?',
+          identity: 'How can my growth shape those around me?',
+          contact: 'How can I help bridge divides for others?',
+          justice: 'How can I inspire others to act?'
+        }
+      }
+    ];
+
+    const dimensions = [
+      { key: 'reflection', name: 'Reflection', icon: '💭' },
+      { key: 'identity', name: 'Identity', icon: '🪞' },
+      { key: 'contact', name: 'Contact Zone', icon: '🤝' },
+      { key: 'justice', name: 'Justice', icon: '⚖️' }
+    ];
+
+    // State
+    let responses = {};
+    let settings = { visibility: 'public', mode: 'individual' };
+    let activeLevel = 1;
+
+    // Load from localStorage
+    function loadData() {
+      const saved = localStorage.getItem('fourthspace_reflection');
+      if (saved) {
+        const data = JSON.parse(saved);
+        responses = data.responses || {};
+        settings = data.settings || settings;
+      }
+    }
+
+    // Save to localStorage
+    function saveData() {
+      localStorage.setItem('fourthspace_reflection', JSON.stringify({
+        responses,
+        settings,
+        lastUpdated: new Date().toISOString()
+      }));
+    }
+
+    // Render levels
+    function renderLevels() {
+      const container = document.getElementById('levels-container');
+      container.innerHTML = levels.map(level => `
+        <div class="level-card ${level.num === activeLevel ? 'active' : ''} ${isLevelCompleted(level.num) ? 'completed' : ''}" data-level="${level.num}">
+          <div class="level-header" onclick="toggleLevel(${level.num})">
+            <div class="level-num"><span>${level.num}</span></div>
+            <div class="level-info">
+              <div class="level-name">Level ${level.num}: ${level.name}</div>
+              <div class="level-desc">${level.desc}</div>
+            </div>
+            <div class="level-toggle">▼</div>
+          </div>
+          <div class="level-body">
+            ${dimensions.map(dim => `
+              <div class="dimension">
+                <div class="dimension-header">
+                  <div class="dimension-icon ${dim.key}">${dim.icon}</div>
+                  <div class="dimension-name">${dim.name}</div>
+                </div>
+                <div class="dimension-prompt">${level.prompts[dim.key]}</div>
+                <textarea 
+                  class="dimension-textarea" 
+                  data-level="${level.num}" 
+                  data-dimension="${dim.key}"
+                  placeholder="Write your reflection here..."
+                  oninput="handleInput(this)"
+                >${responses[`${level.num}_${dim.key}`] || ''}</textarea>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Check if level is completed
+    function isLevelCompleted(levelNum) {
+      return dimensions.every(dim => responses[`${levelNum}_${dim.key}`]?.trim());
+    }
+
+    // Toggle level
+    function toggleLevel(levelNum) {
+      activeLevel = activeLevel === levelNum ? null : levelNum;
+      renderLevels();
+    }
+
+    // Handle input
+    function handleInput(textarea) {
+      const level = textarea.dataset.level;
+      const dimension = textarea.dataset.dimension;
+      responses[`${level}_${dimension}`] = textarea.value;
+      saveData();
+      updateProgress();
+      updateSummary();
+      
+      // Update completed state
+      const card = textarea.closest('.level-card');
+      if (isLevelCompleted(parseInt(level))) {
+        card.classList.add('completed');
+      } else {
+        card.classList.remove('completed');
+      }
+    }
+
+    // Update progress
+    function updateProgress() {
+      const total = 28;
+      const answered = Object.values(responses).filter(r => r?.trim()).length;
+      const percent = (answered / total) * 100;
+      document.getElementById('progress-fill').style.width = `${percent}%`;
+      document.getElementById('progress-count').textContent = answered;
+    }
+
+    // Update summary
+    function updateSummary() {
+      const container = document.getElementById('summary-content');
+      const hasContent = Object.values(responses).some(r => r?.trim());
+      
+      if (!hasContent) {
+        container.innerHTML = '<p class="summary-empty">Start reflecting above to see your summary here.</p>';
+        return;
+      }
+
+      let html = '';
+      levels.forEach(level => {
+        const levelResponses = dimensions
+          .map(dim => ({
+            dim,
+            text: responses[`${level.num}_${dim.key}`]?.trim()
+          }))
+          .filter(r => r.text);
+        
+        if (levelResponses.length > 0) {
+          html += `
+            <div class="summary-level">
+              <div class="summary-level-name">Level ${level.num}: ${level.name}</div>
+              ${levelResponses.map(r => `
+                <div class="summary-dimension">
+                  <div class="summary-dimension-label">${r.dim.name}</div>
+                  <div class="summary-dimension-text">${r.text}</div>
+                </div>
+              `).join('')}
+            </div>
+          `;
+        }
+      });
+      
+      container.innerHTML = html;
+    }
+
+    // Toggle settings
+    document.querySelectorAll('.toggle-option').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const field = btn.dataset.field;
+        const value = btn.dataset.value;
+        btn.parentElement.querySelectorAll('.toggle-option').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        settings[field] = value;
+        saveData();
+      });
+    });
+
+    // Restore settings UI
+    function restoreSettings() {
+      Object.keys(settings).forEach(field => {
+        const btn = document.querySelector(`[data-field="${field}"][data-value="${settings[field]}"]`);
+        if (btn) {
+          btn.parentElement.querySelectorAll('.toggle-option').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+        }
+      });
+    }
+
+    // Toast notification
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.classList.add('visible');
+      setTimeout(() => toast.classList.remove('visible'), 3000);
+    }
+
+    // Copy to clipboard
+    function copyToClipboard() {
+      let text = `FOURTH SPACE REFLECTION JOURNAL\n`;
+      text += `Mode: ${settings.visibility} / ${settings.mode}\n`;
+      text += `Date: ${new Date().toLocaleDateString()}\n\n`;
+      text += `Central Question: "Who am I becoming in different spaces?"\n\n`;
+      text += `${'='.repeat(50)}\n\n`;
+
+      levels.forEach(level => {
+        const levelResponses = dimensions
+          .map(dim => ({
+            dim,
+            text: responses[`${level.num}_${dim.key}`]?.trim()
+          }))
+          .filter(r => r.text);
+        
+        if (levelResponses.length > 0) {
+          text += `LEVEL ${level.num}: ${level.name.toUpperCase()}\n`;
+          text += `${'-'.repeat(30)}\n`;
+          levelResponses.forEach(r => {
+            text += `${r.dim.name}: ${r.text}\n\n`;
+          });
+          text += '\n';
+        }
+      });
+
+      text += `${'='.repeat(50)}\n`;
+      text += `Fourth Space Reflection Protocol © Nicole Galante\n`;
+      text += `nicolegalante.com\n`;
+
+      navigator.clipboard.writeText(text).then(() => {
+        showToast('Copied to clipboard!');
+      });
+    }
+
+    // Export as PDF (print-friendly view)
+    function exportPDF() {
+      const printWindow = window.open('', '_blank');
+      
+      let html = `
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <title>Fourth Space Reflection - ${new Date().toLocaleDateString()}</title>
+          <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+          <style>
+            body { font-family: 'Lato', sans-serif; max-width: 700px; margin: 0 auto; padding: 2rem; color: #2d2a2e; line-height: 1.6; }
+            h1 { font-family: 'Cormorant Garamond', serif; font-size: 28px; margin-bottom: 0.5rem; }
+            .meta { color: #888; font-size: 13px; margin-bottom: 2rem; }
+            .central { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-style: italic; color: #5F4B8B; margin-bottom: 2rem; text-align: center; }
+            .level { margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid #e8e4df; }
+            .level-title { font-family: 'Cormorant Garamond', serif; font-size: 20px; color: #5F4B8B; margin-bottom: 1rem; }
+            .dim { margin-bottom: 1rem; }
+            .dim-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: #888; margin-bottom: 0.25rem; }
+            .dim-text { font-size: 14px; }
+            .footer { margin-top: 3rem; text-align: center; color: #888; font-size: 12px; }
+            @media print { body { padding: 0; } }
+          </style>
+        </head>
+        <body>
+          <h1>Fourth Space Reflection Journal</h1>
+          <p class="meta">Mode: ${settings.visibility} / ${settings.mode} &nbsp;|&nbsp; Date: ${new Date().toLocaleDateString()}</p>
+          <p class="central">"Who am I becoming in different spaces?"</p>
+      `;
+
+      levels.forEach(level => {
+        const levelResponses = dimensions
+          .map(dim => ({
+            dim,
+            text: responses[`${level.num}_${dim.key}`]?.trim()
+          }))
+          .filter(r => r.text);
+        
+        if (levelResponses.length > 0) {
+          html += `
+            <div class="level">
+              <div class="level-title">Level ${level.num}: ${level.name}</div>
+              ${levelResponses.map(r => `
+                <div class="dim">
+                  <div class="dim-label">${r.dim.name}</div>
+                  <div class="dim-text">${r.text}</div>
+                </div>
+              `).join('')}
+            </div>
+          `;
+        }
+      });
+
+      html += `
+          <div class="footer">
+            <p>Fourth Space Reflection Protocol © Nicole Galante</p>
+            <p>nicolegalante.com</p>
+          </div>
+          <script>window.print();<\/script>
+        </body>
+        </html>
+      `;
+
+      printWindow.document.write(html);
+      printWindow.document.close();
+    }
+
+    // Clear all
+    function clearAll() {
+      if (confirm('Are you sure you want to clear all your reflections? This cannot be undone.')) {
+        responses = {};
+        saveData();
+        renderLevels();
+        updateProgress();
+        updateSummary();
+        showToast('All reflections cleared');
+      }
+    }
+
+    // New reflection
+    function newReflection() {
+      if (Object.values(responses).some(r => r?.trim())) {
+        if (!confirm('Start a new reflection? Your current work will be cleared.')) {
+          return;
+        }
+      }
+      responses = {};
+      settings = { visibility: 'public', mode: 'individual' };
+      activeLevel = 1;
+      saveData();
+      renderLevels();
+      restoreSettings();
+      updateProgress();
+      updateSummary();
+      showToast('New reflection started');
+    }
+
+    // Initialize
+    loadData();
+    renderLevels();
+    restoreSettings();
+    updateProgress();
+    updateSummary();
+  </script>
+
+</body>
+</html>
