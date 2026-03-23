@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nicole Galante, Ph.D. | Speaker, Author, Education Strategist</title>
+  <meta name="description" content="Nicole Galante is an education strategist, keynote speaker, and author of Mentor from the Center.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    :root {
+      --sage: #A7B9A5;
+      --sage-light: #c4d1c3;
+      --ink-fig: #5F4B8B;
+      --ink-fig-dark: #4a3a6d;
+      --cream: #F8F3EF;
+      --cream-dark: #efe8e1;
+      --apricot: #F3C9A3;
+      --clay: #D4856A;
+      --clay-dark: #b86d54;
+      --forest: #2d3d2d;
+      --text: #2d2a2e;
+      --text-secondary: #5a5658;
+      --text-muted: #8a8688;
+      --white: #ffffff;
+      --border: #e8e4df;
+    }
+    
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Lato', sans-serif; font-weight: 300; color: var(--text); background: var(--cream); line-height: 1.75; font-size: 17px; overflow-x: hidden; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 2.5rem; }
+    h1, h2, h3, h4, h5 { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 500; line-height: 1.2; }
+    .collage { position: absolute; pointer-events: none; z-index: 1; }
+    
+    /* Navigation with collage */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      background: rgba(248, 243, 239, 0.88);
+      backdrop-filter: blur(20px);
+      z-index: 1000;
+      border-bottom: 1px solid rgba(232, 228, 223, 0.5);
+      overflow: visible;
+    }
+    .nav-collage-birds { position: absolute; top: -20px; right: 80px; width: 140px; opacity: 0.35; z-index: 0; }
+    .nav-collage-butterfly { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 60px; opacity: 0.12; z-index: 0; }
+    nav .container { display: flex; justify-content: space-between; align-items: center; height: 85px; position: relative; z-index: 2; }
+    .nav-logo { display: flex; align-items: center; gap: 14px; text-decoration: none; }
+    .nav-logo-icon { width: 48px; height: 48px; }
+    .nav-logo-text { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 24px; font-weight: 500; color: var(--text); }
+    .nav-links { display: flex; gap: 3rem; list-style: none; align-items: center; }
+    .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.3s; }
+    .nav-links a:hover { color: var(--ink-fig); }
+    .nav-cta { background: var(--forest); color: var(--cream) !important; padding: 14px 28px; letter-spacing: 0.1em; transition: all 0.3s !important; }
+    .nav-cta:hover { background: var(--ink-fig) !important; }
+    .mobile-menu-btn { display: none; background: none; border: none; font-size: 28px; cursor: pointer; }
+    
+    /* Hero */
+    .hero { padding: 12rem 0 8rem; position: relative; overflow: hidden; min-height: 100vh; display: flex; align-items: center; }
+    .hero-hand { position: absolute; top: 70px; left: 0; width: 100%; opacity: 0.45; z-index: 1; }
+    .hero-birds { position: absolute; top: 10%; right: -2%; width: 380px; opacity: 0.5; z-index: 1; }
+    .hero-mountains { position: absolute; bottom: -8%; right: 5%; width: 300px; opacity: 0.3; z-index: 1; }
+    .hero-paper { position: absolute; bottom: 5%; left: -2%; width: 280px; opacity: 0.4; z-index: 1; }
+    .hero-butterfly { position: absolute; top: 35%; left: 8%; width: 80px; opacity: 0.25; z-index: 1; transform: rotate(-20deg); }
+    
+    .hero .container { display: grid; grid-template-columns: 1fr 380px; gap: 5rem; align-items: center; position: relative; z-index: 2; }
+    .hero-eyebrow { font-size: 11px; letter-spacing: 4px; text-transform: uppercase; color: var(--clay); margin-bottom: 2rem; }
+    .hero-title { font-size: clamp(40px, 4.5vw, 58px); font-weight: 400; line-height: 1.1; color: var(--forest); margin-bottom: 2rem; }
+    .hero-title em { font-style: italic; color: var(--ink-fig); }
+    .hero-subtitle { font-size: 17px; color: var(--text-secondary); line-height: 1.9; margin-bottom: 3rem; max-width: 520px; }
+    .hero-ctas { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+    
+    .btn { display: inline-flex; align-items: center; gap: 12px; padding: 18px 36px; font-family: 'Lato', sans-serif; font-size: 11px; font-weight: 400; letter-spacing: 0.18em; text-transform: uppercase; text-decoration: none; transition: all 0.4s ease; border: none; cursor: pointer; }
+    .btn-primary { background: var(--forest); color: var(--cream); }
+    .btn-primary:hover { background: var(--ink-fig); transform: translateY(-2px); }
+    .btn-secondary { background: transparent; color: var(--forest); border: 1px solid var(--forest); }
+    .btn-secondary:hover { background: var(--forest); color: var(--cream); }
+    
+    .hero-image { position: relative; }
+    .hero-image-frame { position: relative; overflow: hidden; box-shadow: 0 40px 100px rgba(45, 61, 45, 0.18); }
+    .hero-image-frame img { width: 100%; display: block; filter: sepia(18%) saturate(92%) brightness(1.02); }
+    .hero-frame-border { position: absolute; top: -15px; left: -15px; right: 15px; bottom: 15px; border: 1px solid var(--sage); z-index: -1; }
+    .hero-frame-fill { position: absolute; bottom: -20px; right: -20px; width: 60%; height: 40%; background: var(--apricot); opacity: 0.4; z-index: -1; }
+    
+    /* Credential Bar */
+    .credential-bar { background: var(--white); padding: 4.5rem 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); position: relative; overflow: hidden; }
+    .cred-strip { position: absolute; top: 50%; left: 0; width: 100%; transform: translateY(-50%); opacity: 0.08; z-index: 0; }
+    .credential-bar .container { display: flex; justify-content: center; gap: 6rem; flex-wrap: wrap; position: relative; z-index: 2; }
+    .credential { text-align: center; }
+    .credential-num { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 56px; font-weight: 400; color: var(--forest); line-height: 1; }
+    .credential-label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); margin-top: 14px; }
+    
+    /* Sections */
+    .section { padding: 9rem 0; position: relative; overflow: hidden; }
+    .section-white { background: var(--white); }
+    .section-cream { background: var(--cream); }
+    .section-ink { background: var(--forest); color: var(--cream); }
+    .section-header { text-align: center; margin-bottom: 5rem; position: relative; z-index: 2; }
+    .section-eyebrow { font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: var(--clay); margin-bottom: 1.25rem; }
+    .section-ink .section-eyebrow { color: var(--apricot); }
+    .section-title { font-size: clamp(36px, 4vw, 52px); font-weight: 400; }
+    .section-subtitle { font-size: 18px; color: var(--text-secondary); margin-top: 1.5rem; max-width: 600px; margin-left: auto; margin-right: auto; }
+    .section-ink .section-subtitle { color: rgba(248, 243, 239, 0.7); }
+    
+    /* Speaking */
+    .speaking-mountains { position: absolute; top: 5%; right: -4%; width: 340px; opacity: 0.28; z-index: 0; }
+    .speaking-dancer { position: absolute; bottom: 0; left: -3%; width: 420px; opacity: 0.22; z-index: 0; }
+    .speaking-butterfly { position: absolute; top: 20%; left: 15%; width: 70px; opacity: 0.18; z-index: 0; transform: rotate(15deg); }
+    
+    .topics-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; position: relative; z-index: 2; }
+    .topic { background: var(--cream); padding: 3rem; border: 1px solid var(--border); transition: all 0.4s ease; position: relative; }
+    .topic::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: linear-gradient(90deg, var(--sage) 0%, var(--apricot) 100%); transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease; }
+    .topic:hover::before { transform: scaleX(1); }
+    .topic:hover { box-shadow: 0 25px 70px rgba(45, 61, 45, 0.08); }
+    .topic-icon { width: 52px; height: 52px; margin-bottom: 2rem; }
+    .topic-title { font-size: 26px; font-weight: 400; margin-bottom: 1rem; color: var(--forest); }
+    .topic-desc { font-size: 15px; color: var(--text-secondary); line-height: 1.85; }
+    .topic-formats { margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--border); display: flex; gap: 0.75rem; flex-wrap: wrap; }
+    .format-tag { font-size: 9px; text-transform: uppercase; letter-spacing: 0.15em; padding: 8px 16px; background: var(--white); color: var(--text-secondary); border: 1px solid var(--border); }
+    
+    /* Quote */
+    .quote-section { padding: 9rem 0; background: var(--forest); position: relative; overflow: hidden; }
+    .quote-hand { position: absolute; top: 50%; left: 0; width: 100%; transform: translateY(-50%); opacity: 0.08; z-index: 0; }
+    .quote-birds { position: absolute; top: 10%; right: 5%; width: 200px; opacity: 0.12; z-index: 0; }
+    .quote-mark { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 220px; color: rgba(248, 243, 239, 0.05); line-height: 1; position: absolute; top: -50px; left: 8%; }
+    .quote-text { font-family: 'Cormorant Garamond', Georgia, serif; font-size: clamp(26px, 3.5vw, 42px); font-weight: 400; font-style: italic; line-height: 1.5; color: var(--cream); text-align: center; max-width: 900px; margin: 0 auto; position: relative; z-index: 2; }
+    
+    /* Book */
+    .book-section { background: linear-gradient(160deg, var(--ink-fig-dark) 0%, var(--ink-fig) 100%); padding: 10rem 0; position: relative; overflow: hidden; }
+    .book-birds { position: absolute; top: 5%; right: 2%; width: 300px; opacity: 0.15; z-index: 0; }
+    .book-paper { position: absolute; bottom: -5%; left: -2%; width: 280px; opacity: 0.12; z-index: 0; }
+    .book-butterfly { position: absolute; bottom: 20%; right: 8%; width: 100px; opacity: 0.15; z-index: 0; transform: rotate(25deg); }
+    .book-mountains { position: absolute; top: 15%; left: 3%; width: 200px; opacity: 0.1; z-index: 0; transform: rotate(-10deg); }
+    .book-grid { display: grid; grid-template-columns: 280px 1fr; gap: 5rem; align-items: center; position: relative; z-index: 2; }
+    
+    
+    
+    
+    
+    .book-content h3 { font-size: 44px; font-weight: 400; margin-bottom: 2rem; color: var(--cream); }
+    .book-content p { font-size: 17px; line-height: 1.95; color: rgba(248, 243, 239, 0.8); margin-bottom: 1.5rem; }
+    .book-quote { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 24px; font-style: italic; color: var(--apricot); border-left: 1px solid var(--apricot); padding-left: 2rem; margin: 3rem 0; }
+    .btn-apricot { background: var(--apricot); color: var(--forest); }
+    .btn-apricot:hover { background: var(--cream); }
+    
+    /* Framework */
+    .framework-hand { position: absolute; bottom: -5%; right: 0; width: 55%; opacity: 0.1; z-index: 0; }
+    .framework-dancer { position: absolute; top: 8%; left: -3%; width: 300px; opacity: 0.12; z-index: 0; }
+    .framework-butterfly { position: absolute; top: 15%; right: 10%; width: 90px; opacity: 0.2; z-index: 0; transform: rotate(-30deg); }
+    .framework-intro { text-align: center; max-width: 720px; margin: 0 auto 5rem; position: relative; z-index: 2; }
+    .framework-intro p { font-size: 18px; color: var(--text-secondary); line-height: 1.95; }
+    .shifts-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-bottom: 5rem; position: relative; z-index: 2; }
+    .shift-card { background: var(--white); padding: 3rem 2.5rem; text-align: center; border: 1px solid var(--border); transition: all 0.4s ease; }
+    .shift-card:hover { border-color: var(--sage); box-shadow: 0 25px 60px rgba(167, 185, 165, 0.12); }
+    .shift-num { font-size: 9px; letter-spacing: 4px; color: var(--clay); margin-bottom: 1.5rem; text-transform: uppercase; }
+    .shift-from { font-size: 14px; color: var(--text-muted); margin-bottom: 1rem; }
+    .shift-arrow { font-size: 20px; color: var(--sage); margin-bottom: 1rem; }
+    .shift-to { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 26px; font-weight: 400; font-style: italic; color: var(--forest); }
+    
+    .protocol-card { background: var(--white); padding: 4rem; border: 1px solid var(--border); position: relative; z-index: 2; }
+    .protocol-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 3rem; flex-wrap: wrap; gap: 1.5rem; }
+    .protocol-header h4 { font-size: 30px; font-weight: 400; }
+    .protocol-grid { display: grid; grid-template-columns: 100px repeat(4, 1fr); gap: 1px; background: var(--border); font-size: 12px; }
+    .pg-h { background: var(--forest); color: var(--cream); padding: 16px 12px; text-align: center; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; }
+    .pg-l { background: var(--cream); padding: 14px 12px; text-align: center; }
+    .pg-l-num { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 500; color: var(--ink-fig); font-size: 18px; }
+    .pg-l-name { font-size: 8px; color: var(--text-muted); letter-spacing: 0.1em; text-transform: uppercase; display: block; margin-top: 4px; }
+    .pg-c { background: var(--white); padding: 14px 12px; text-align: center; color: var(--text-secondary); font-size: 11px; }
+    .pg-alt .pg-l { background: var(--cream-dark); }
+    .pg-alt .pg-c { background: var(--cream); }
+    .protocol-footer { display: flex; justify-content: center; margin-top: 3rem; padding-top: 3rem; border-top: 1px solid var(--border); }
+    .protocol-question { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 24px; font-style: italic; color: var(--ink-fig); }
+    
+    /* Credentials */
+    .creds-butterfly { position: absolute; top: 6%; left: 4%; width: 130px; opacity: 0.22; z-index: 0; transform: rotate(-15deg); }
+    .creds-birds { position: absolute; bottom: 10%; right: 3%; width: 200px; opacity: 0.15; z-index: 0; }
+    .creds-mountains { position: absolute; top: 50%; right: -5%; width: 250px; opacity: 0.1; z-index: 0; transform: translateY(-50%); }
+    .credentials-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2.5rem; position: relative; z-index: 2; }
+    .cred-card { background: var(--white); padding: 3rem; display: flex; gap: 2rem; align-items: flex-start; border: 1px solid var(--border); transition: all 0.4s ease; }
+    .cred-card:hover { border-color: var(--sage); box-shadow: 0 15px 50px rgba(167, 185, 165, 0.1); }
+    .cred-icon { width: 56px; height: 56px; flex-shrink: 0; }
+    .cred-content h4 { font-size: 22px; font-weight: 400; margin-bottom: 0.25rem; color: var(--forest); }
+    .cred-org { font-size: 13px; color: var(--clay); letter-spacing: 0.05em; margin-bottom: 1rem; }
+    .cred-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.7; }
+    
+    /* Testimonials */
+    .test-dancer { position: absolute; top: 5%; left: 2%; width: 300px; opacity: 0.08; z-index: 0; }
+    .test-butterfly { position: absolute; bottom: 10%; right: 5%; width: 100px; opacity: 0.1; z-index: 0; transform: rotate(20deg); }
+    .testimonials-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2.5rem; position: relative; z-index: 2; }
+    .testimonial { background: rgba(248, 243, 239, 0.06); border: 1px solid rgba(248, 243, 239, 0.1); padding: 3rem; }
+    .testimonial-text { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 22px; font-style: italic; line-height: 1.6; color: var(--cream); margin-bottom: 2.5rem; }
+    .testimonial-author { display: flex; align-items: center; gap: 1.25rem; }
+    .testimonial-avatar { width: 56px; height: 56px; background: linear-gradient(135deg, var(--sage) 0%, var(--sage-light) 100%); }
+    .testimonial-name { font-weight: 400; color: var(--cream); font-size: 15px; }
+    .testimonial-role { font-size: 12px; color: rgba(248, 243, 239, 0.5); letter-spacing: 0.05em; }
+    
+    /* Newsletter */
+    .newsletter-section { background: var(--sage); padding: 7rem 0; position: relative; overflow: hidden; }
+    .news-hand { position: absolute; top: -20%; left: 0; width: 100%; opacity: 0.15; z-index: 0; }
+    .news-mountains { position: absolute; bottom: -10%; right: -5%; width: 300px; opacity: 0.2; z-index: 0; }
+    .newsletter-card { background: var(--cream); padding: 5rem; text-align: center; max-width: 750px; margin: 0 auto; box-shadow: 0 40px 100px rgba(45, 61, 45, 0.12); position: relative; z-index: 2; }
+    .newsletter-butterfly { width: 100px; height: auto; margin: 0 auto 2.5rem; display: block; }
+    .newsletter-card h3 { font-size: 40px; font-weight: 400; margin-bottom: 1.25rem; color: var(--forest); }
+    .newsletter-card p { font-size: 17px; color: var(--text-secondary); margin-bottom: 2.5rem; line-height: 1.8; }
+    .newsletter-form { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .newsletter-input { padding: 18px 28px; border: 1px solid var(--border); background: var(--white); font-family: 'Lato', sans-serif; font-size: 15px; min-width: 300px; transition: all 0.3s; }
+    .newsletter-input::placeholder { color: var(--text-muted); }
+    .newsletter-input:focus { outline: none; border-color: var(--forest); }
+    
+    /* Contact */
+    .contact-birds { position: absolute; top: 8%; right: 3%; width: 250px; opacity: 0.2; z-index: 0; }
+    .contact-paper { position: absolute; bottom: 5%; left: 2%; width: 220px; opacity: 0.15; z-index: 0; }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; position: relative; z-index: 2; }
+    .contact-info h3 { font-size: 44px; font-weight: 400; margin-bottom: 2rem; color: var(--forest); }
+    .contact-info > p { font-size: 17px; color: var(--text-secondary); line-height: 1.9; margin-bottom: 3rem; }
+    .contact-methods { display: flex; flex-direction: column; gap: 1.25rem; }
+    .contact-method { display: flex; align-items: center; gap: 1.5rem; padding: 1.5rem 2rem; background: var(--white); text-decoration: none; color: var(--text); border: 1px solid var(--border); transition: all 0.4s ease; }
+    .contact-method:hover { border-color: var(--sage); transform: translateX(8px); box-shadow: 0 10px 30px rgba(167, 185, 165, 0.12); }
+    .contact-method-icon { width: 48px; height: 48px; }
+    .contact-method-label { font-size: 10px; color: var(--text-muted); letter-spacing: 0.15em; text-transform: uppercase; }
+    .contact-method-value { font-weight: 400; font-size: 16px; color: var(--forest); }
+    
+    .contact-form { background: var(--white); padding: 4rem; border: 1px solid var(--border); }
+    .contact-form h4 { font-size: 28px; font-weight: 400; margin-bottom: 2.5rem; color: var(--forest); }
+    .form-group { margin-bottom: 1.75rem; }
+    .form-label { display: block; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.75rem; color: var(--text-secondary); }
+    .form-input, .form-textarea, .form-select { width: 100%; padding: 16px 20px; border: 1px solid var(--border); font-family: 'Lato', sans-serif; font-size: 15px; background: var(--cream); transition: all 0.3s; }
+    .form-input:focus, .form-textarea:focus, .form-select:focus { outline: none; border-color: var(--forest); background: var(--white); }
+    .form-textarea { resize: vertical; min-height: 140px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+    
+    /* Footer */
+    footer { background: var(--forest); color: var(--cream); padding: 6rem 0 2.5rem; position: relative; overflow: hidden; }
+    .footer-butterfly { position: absolute; top: 10%; right: 8%; width: 80px; opacity: 0.08; z-index: 0; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 4rem; margin-bottom: 5rem; position: relative; z-index: 2; }
+    .footer-brand { display: flex; flex-direction: column; gap: 2rem; }
+    .footer-logo { display: flex; align-items: center; gap: 14px; }
+    .footer-logo-icon { width: 56px; height: 56px; filter: brightness(0) invert(1) sepia(1) saturate(0.3) hue-rotate(330deg); opacity: 0.85; }
+    .footer-logo-text { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 26px; font-weight: 500; color: var(--cream); }
+    .footer-brand p { font-size: 14px; color: rgba(248, 243, 239, 0.55); line-height: 1.8; max-width: 320px; }
+    .footer-col h5 { font-family: 'Lato', sans-serif; font-size: 9px; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 2rem; color: rgba(248, 243, 239, 0.35); }
+    .footer-col a { display: block; color: rgba(248, 243, 239, 0.7); text-decoration: none; font-size: 14px; margin-bottom: 1rem; transition: color 0.3s; }
+    .footer-col a:hover { color: var(--apricot); }
+    .footer-bottom { padding-top: 2.5rem; border-top: 1px solid rgba(248, 243, 239, 0.1); display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: rgba(248, 243, 239, 0.35); position: relative; z-index: 2; }
+    .footer-social { display: flex; gap: 1rem; }
+    .footer-social a { width: 44px; height: 44px; background: rgba(248, 243, 239, 0.06); display: flex; align-items: center; justify-content: center; color: var(--cream); text-decoration: none; font-size: 16px; transition: all 0.3s; border: 1px solid rgba(248, 243, 239, 0.1); }
+    .footer-social a:hover { background: var(--ink-fig); border-color: var(--ink-fig); }
+    
+    /* Responsive */
+    @media (max-width: 1000px) {
+      .hero .container { grid-template-columns: 1fr; text-align: center; }
+      .hero-subtitle { margin: 0 auto 3rem; }
+      .hero-image { max-width: 360px; margin: 4rem auto 0; }
+      .hero-ctas { justify-content: center; }
+      .topics-grid, .shifts-row { grid-template-columns: 1fr; }
+      .book-grid { grid-template-columns: 1fr; text-align: center; }
+      .book-cover { max-width: 260px; margin: 0 auto 3rem; }
+      .credentials-grid, .testimonials-grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 700px) {
+      .nav-links { display: none; }
+      .mobile-menu-btn { display: block; }
+      .nav-collage-birds, .nav-collage-butterfly { display: none; }
+      .section { padding: 5rem 0; }
+      .container { padding: 0 1.5rem; }
+      .hero { padding: 9rem 0 5rem; min-height: auto; }
+      .hero-hand, .hero-birds, .hero-paper, .hero-mountains, .hero-butterfly { opacity: 0.15; }
+      .credential-bar .container { gap: 3rem; }
+      .newsletter-card { padding: 3rem 2rem; }
+      .footer-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .footer-bottom { flex-direction: column; gap: 1.5rem; text-align: center; }
+      .form-row { grid-template-columns: 1fr; }
+      .protocol-grid { font-size: 9px; grid-template-columns: 80px repeat(4, 1fr); }
+      .pg-h, .pg-c, .pg-l { padding: 10px 6px; }
+    }
+  
+    
+    .book-cover-ornament {
+      font-size: 28px;
+      opacity: 0.5;
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.5em;
+    }
+    .book-cover-line {
+      width: 40px;
+      height: 1px;
+      background: rgba(248, 243, 239, 0.4);
+      margin: 1.5rem auto;
+    }
+    .book-cover-ornament-bottom {
+      font-size: 10px;
+      opacity: 0.4;
+      letter-spacing: 0.3em;
+      margin-top: 1.5rem;
+    }
+    .book-cover-inner {
+      background: linear-gradient(160deg, var(--clay) 0%, var(--clay-dark) 100%);
+      aspect-ratio: 6/9;
+      box-shadow: -30px 30px 80px rgba(0,0,0,0.35), inset 0 0 60px rgba(0,0,0,0.15);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 2.5rem 2rem;
+      text-align: center;
+      color: var(--cream);
+      position: relative;
+      border-left: 4px solid rgba(0,0,0,0.2);
+    }
+    .book-cover-inner::before {
+      content: '';
+      position: absolute;
+      top: 12px; left: 12px; right: 12px; bottom: 12px;
+      border: 1px solid rgba(248, 243, 239, 0.15);
+      pointer-events: none;
+    }
+    .book-cover-title {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 26px;
+      font-weight: 600;
+      line-height: 1.25;
+      letter-spacing: 0.02em;
+    }
+    .book-cover-subtitle {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 12px;
+      font-style: italic;
+      opacity: 0.85;
+      line-height: 1.5;
+    }
+    .book-cover-eyebrow {
+      font-size: 8px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      opacity: 0.6;
+      margin-bottom: 1.5rem;
+    }
+    .book-cover-author {
+      margin-top: auto;
+      padding-top: 2rem;
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      opacity: 0.55;
+    }
+  
+    /* Mobile menu open state */
+    .nav-open {
+      display: flex !important;
+      flex-direction: column;
+      position: absolute;
+      top: 85px;
+      left: 0;
+      right: 0;
+      background: var(--cream);
+      padding: 2rem;
+      gap: 1.5rem;
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+    }
+    .nav-open .nav-cta {
+      text-align: center;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <img src="images/image0.png" alt="" class="nav-collage-birds collage">
+    <img src="images/image1.png" alt="" class="nav-collage-butterfly collage">
+    <div class="container">
+      <a href="#" class="nav-logo">
+        <img src="images/image2.png" alt="Nicole Galante" class="nav-logo-icon">
+        <span class="nav-logo-text">Nicole Galante</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#speaking">Speaking</a></li>
+        <li><a href="#book">The Book</a></li>
+        <li><a href="#framework">Framework</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact" class="nav-cta">Book Nicole</a></li>
+      </ul>
+      <button class="mobile-menu-btn">☰</button>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <img src="images/image3.png" alt="" class="hero-hand collage">
+    <img src="images/image0.png" alt="" class="hero-birds collage">
+    <img src="images/image4.png" alt="" class="hero-mountains collage">
+    <img src="images/image5.png" alt="" class="hero-paper collage">
+    <img src="images/image1.png" alt="" class="hero-butterfly collage">
+    <div class="container">
+      <div class="hero-content">
+        <p class="hero-eyebrow">Speaker · Author · Education Strategist</p>
+        <h1 class="hero-title">Helping institutions ask <em>better questions</em> about education in the AI era</h1>
+        <p class="hero-subtitle">From her own English classroom to directing teacher education at Stony Brook, from leading a Center for Teaching and Learning through the pandemic to evaluating statewide policy for NYSED—Nicole has spent two decades in the work. She now helps K-12 districts, universities, and EdTech companies navigate AI in education through the Fourth Space framework.</p>
+        <div class="hero-ctas">
+          <a href="#contact" class="btn btn-primary">Book a Keynote</a>
+          <a href="#framework" class="btn btn-secondary">Explore the Framework</a>
+        </div>
+      </div>
+      <div class="hero-image">
+        <div class="hero-frame-border"></div>
+        <div class="hero-frame-fill"></div>
+        <div class="hero-image-frame">
+          <img src="images/image6.jpg" alt="Nicole Galante">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="credential-bar">
+    <img src="images/image7.png" alt="" class="cred-strip collage">
+    <div class="container">
+      <div class="credential"><div class="credential-num">20+</div><div class="credential-label">Years in Education</div></div>
+      <div class="credential"><div class="credential-num">1000s</div><div class="credential-label">Teachers Coached</div></div>
+      <div class="credential"><div class="credential-num">19</div><div class="credential-label">States + 5 Countries</div></div>
+      <div class="credential"><div class="credential-num">2</div><div class="credential-label">EdTech Companies</div></div>
+    </div>
+  </div>
+
+  <section class="section section-white" id="speaking">
+    <img src="images/image4.png" alt="" class="speaking-mountains collage">
+    <img src="images/image8.png" alt="" class="speaking-dancer collage">
+    <img src="images/image1.png" alt="" class="speaking-butterfly collage">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-eyebrow">Speaking</p>
+        <h2 class="section-title">Keynotes, Workshops & Panels</h2>
+        <p class="section-subtitle">Two decades of workshops and keynotes at conferences across the world—presentations that leave audiences with frameworks they can use Monday morning.</p>
+      </div>
+      <div class="topics-grid">
+        <div class="topic">
+          <svg class="topic-icon" viewBox="0 0 64 64" fill="none" stroke="#D4856A" stroke-width="1.2"><circle cx="32" cy="24" r="10"/><path d="M32 34v20M22 44h20M17 54c0-8.284 6.716-15 15-15s15 6.716 15 15"/><circle cx="32" cy="24" r="3" fill="#D4856A" stroke="none"/><path d="M44 12l4-4M20 12l-4-4M32 6V2" stroke="#A7B9A5" stroke-width="1"/></svg>
+          <h3 class="topic-title">AI in Education</h3>
+          <p class="topic-desc">What K-12 has learned from 18 months of AI reckoning—and what higher ed can learn before repeating the same mistakes. Moving beyond detection and toward pedagogy.</p>
+          <div class="topic-formats"><span class="format-tag">Keynote</span><span class="format-tag">Workshop</span><span class="format-tag">Panel</span></div>
+        </div>
+        <div class="topic">
+          <svg class="topic-icon" viewBox="0 0 64 64" fill="none" stroke="#D4856A" stroke-width="1.2"><rect x="12" y="12" width="40" height="40" rx="2"/><line x1="12" y1="22" x2="52" y2="22"/><line x1="12" y1="32" x2="52" y2="32"/><line x1="12" y1="42" x2="52" y2="42"/><line x1="22" y1="12" x2="22" y2="52"/><line x1="32" y1="12" x2="32" y2="52"/><line x1="42" y1="12" x2="42" y2="52"/><circle cx="27" cy="27" r="2" fill="#A7B9A5" stroke="none"/><circle cx="37" cy="37" r="2" fill="#A7B9A5" stroke="none"/><circle cx="47" cy="47" r="2" fill="#A7B9A5" stroke="none"/></svg>
+          <h3 class="topic-title">Fourth Space Pedagogy</h3>
+          <p class="topic-desc">A framework for teaching that honors reflection, identity, contact zones, and justice. Practical tools for classrooms where AI is already present.</p>
+          <div class="topic-formats"><span class="format-tag">Keynote</span><span class="format-tag">Half-Day</span><span class="format-tag">Full-Day</span></div>
+        </div>
+        <div class="topic">
+          <svg class="topic-icon" viewBox="0 0 64 64" fill="none" stroke="#D4856A" stroke-width="1.2"><circle cx="32" cy="32" r="18"/><circle cx="32" cy="32" r="8"/><path d="M32 14v8M32 42v8M14 32h8M42 32h8" stroke="#A7B9A5"/><path d="M22 22l5 5M37 37l5 5M22 42l5-5M37 27l5-5" stroke="#A7B9A5" stroke-width="1"/></svg>
+          <h3 class="topic-title">EdTech Strategy</h3>
+          <p class="topic-desc">From product design to implementation—how to build and deploy educational technology that serves teachers rather than replacing them.</p>
+          <div class="topic-formats"><span class="format-tag">Keynote</span><span class="format-tag">Consulting</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="quote-section">
+    <img src="images/image3.png" alt="" class="quote-hand collage">
+    <img src="images/image0.png" alt="" class="quote-birds collage">
+    <span class="quote-mark">"</span>
+    <div class="container">
+      <p class="quote-text">The institutions that thrive won't adopt AI fastest or resist it longest. They'll ask better questions about what education is actually for.</p>
+    </div>
+  </div>
+
+  <section class="book-section" id="book">
+    <img src="images/image0.png" alt="" class="book-birds collage">
+    <img src="images/image5.png" alt="" class="book-paper collage">
+    <img src="images/image1.png" alt="" class="book-butterfly collage">
+    <img src="images/image4.png" alt="" class="book-mountains collage">
+    <div class="container">
+      <div class="book-grid">
+        <div class="book-cover"><div class="book-cover-inner">
+          <div class="book-cover-ornament">◈</div>
+          <p class="book-cover-eyebrow">Coming 2026</p>
+          <h3 class="book-cover-title">Mentor from<br>the Center</h3>
+          <div class="book-cover-line"></div>
+          <p class="book-cover-subtitle">Reimagining Education<br>for an AI-Driven World</p>
+          <div class="book-cover-ornament-bottom">✦ ✦ ✦</div>
+          <p class="book-cover-author">Nicole Galante, Ph.D.</p>
+        </div></div>
+        <div class="book-content">
+          <h3>The book on teaching in the age of AI</h3>
+          <p><em>Mentor from the Center</em> introduces three shifts essential for teaching in an AI-saturated world: from efficiency to humanity, from bias-as-defect to bias-as-invitation, and from teacher-as-expert to teacher-as-learner.</p>
+          <p>Grounded in Fourth Space pedagogy—a framework extending Homi Bhabha's Third Space theory—this book positions teachers as irreplaceable agents of relational, humanizing, and identity-forming work that AI cannot replicate.</p>
+          <blockquote class="book-quote">When answers are instant, credibility comes from modeling learning in public.</blockquote>
+          <div><a href="https://fnfs.substack.com" target="_blank" class="btn btn-apricot">Read Early Chapters on Substack</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-cream" id="framework">
+    <img src="images/image3.png" alt="" class="framework-hand collage">
+    <img src="images/image8.png" alt="" class="framework-dancer collage">
+    <img src="images/image1.png" alt="" class="framework-butterfly collage">
+    <div class="container">
+      <div class="section-header"><p class="section-eyebrow">The Framework</p><h2 class="section-title">Fourth Space Pedagogy</h2></div>
+      <div class="framework-intro"><p>Fourth Space extends Homi Bhabha's Third Space theory to position teachers as "mentors from the center"—learning publicly alongside students rather than performing expertise from above. It offers a structured approach to reflection that centers identity, acknowledges conflict, and demands attention to justice.</p></div>
+      <div class="shifts-row">
+        <div class="shift-card"><p class="shift-num">Shift One</p><p class="shift-from">From efficiency</p><p class="shift-arrow">↓</p><p class="shift-to">To humanity</p></div>
+        <div class="shift-card"><p class="shift-num">Shift Two</p><p class="shift-from">From bias-as-defect</p><p class="shift-arrow">↓</p><p class="shift-to">To bias-as-invitation</p></div>
+        <div class="shift-card"><p class="shift-num">Shift Three</p><p class="shift-from">From teacher-as-expert</p><p class="shift-arrow">↓</p><p class="shift-to">To teacher-as-learner</p></div>
+      </div>
+      <div class="protocol-card">
+        <div class="protocol-header"><h4>Fourth Space Reflection Protocol</h4><a href="#contact" class="btn btn-primary" style="padding: 14px 28px;">Request Full Protocol</a></div>
+        <div class="protocol-grid">
+          <div class="pg-h">Level</div><div class="pg-h">Reflection</div><div class="pg-h">Identity</div><div class="pg-h">Contact Zone</div><div class="pg-h">Justice</div>
+          <div class="pg-l"><span class="pg-l-num">1</span><span class="pg-l-name">Remember</span></div><div class="pg-c">What happened?</div><div class="pg-c">Which space?</div><div class="pg-c">What conflict?</div><div class="pg-c">Which issues?</div>
+          <div class="pg-l pg-alt"><span class="pg-l-num">2</span><span class="pg-l-name">Understand</span></div><div class="pg-c pg-alt">Why important?</div><div class="pg-c pg-alt">Which aspects?</div><div class="pg-c pg-alt">Which cultures?</div><div class="pg-c pg-alt">Why address?</div>
+          <div class="pg-l"><span class="pg-l-num">3</span><span class="pg-l-name">Apply</span></div><div class="pg-c">Use again?</div><div class="pg-c">Shape me?</div><div class="pg-c">Affect each?</div><div class="pg-c">Future?</div>
+          <div class="pg-l pg-alt"><span class="pg-l-num">4</span><span class="pg-l-name">Analyze</span></div><div class="pg-c pg-alt">Patterns?</div><div class="pg-c pg-alt">Identity patterns?</div><div class="pg-c pg-alt">Struggle?</div><div class="pg-c pg-alt">Issue patterns?</div>
+          <div class="pg-l"><span class="pg-l-num">5</span><span class="pg-l-name">Evaluate</span></div><div class="pg-c">How well?</div><div class="pg-c">How am I doing?</div><div class="pg-c">How did each?</div><div class="pg-c">Addressed?</div>
+          <div class="pg-l pg-alt"><span class="pg-l-num">6</span><span class="pg-l-name">Create</span></div><div class="pg-c pg-alt">What next?</div><div class="pg-c pg-alt">Next growth?</div><div class="pg-c pg-alt">Next engage?</div><div class="pg-c pg-alt">Next action?</div>
+          <div class="pg-l"><span class="pg-l-num">7</span><span class="pg-l-name">Inspire</span></div><div class="pg-c">Inspire others?</div><div class="pg-c">Shape others?</div><div class="pg-c">Engage others?</div><div class="pg-c">Inspire action?</div>
+        </div>
+        <div class="protocol-footer"><p class="protocol-question">Who am I becoming in different spaces?</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-white" id="about">
+    <img src="images/image1.png" alt="" class="creds-butterfly collage">
+    <img src="images/image0.png" alt="" class="creds-birds collage">
+    <img src="images/image4.png" alt="" class="creds-mountains collage">
+    <div class="container">
+      <div class="section-header"><p class="section-eyebrow">Background</p><h2 class="section-title">Where the Work Comes From</h2></div>
+      <div class="credentials-grid">
+        <div class="cred-card"><svg class="cred-icon" viewBox="0 0 64 64" fill="none" stroke="#D4856A" stroke-width="1.2"><path d="M32 8l20 12v8l-20 12-20-12v-8L32 8z"/><path d="M12 28v16l20 12 20-12V28" stroke="#A7B9A5"/><line x1="32" y1="32" x2="32" y2="56" stroke="#A7B9A5"/><circle cx="32" cy="20" r="4" fill="#D4856A" stroke="none"/></svg><div class="cred-content"><h4>Director, MA in Liberal Studies</h4><p class="cred-org">Stony Brook University</p><p class="cred-desc">Leading a graduate program where the majority of students are working K-12 educators. Previously directed the English Teacher Education program and founded the Center for Teaching and Learning in Community.</p></div></div>
+        <div class="cred-card"><svg class="cred-icon" viewBox="0 0 64 64" fill="none" stroke="#D4856A" stroke-width="1.2"><rect x="8" y="16" width="20" height="20" rx="2"/><rect x="36" y="16" width="20" height="20" rx="2"/><rect x="8" y="44" width="20" height="12" rx="2" stroke="#A7B9A5"/><rect x="36" y="44" width="20" height="12" rx="2" stroke="#A7B9A5"/><circle cx="18" cy="26" r="3" fill="#A7B9A5" stroke="none"/><circle cx="46" cy="26" r="3" fill="#A7B9A5" stroke="none"/></svg><div class="cred-content"><h4>Co-Founder & Chief Strategy Officer</h4><p class="cred-org">Mosaic Instructional Planning</p><p class="cred-desc">EdTech platform serving teachers across 19 states and internationally—UAE, Peru, England, Finland, Namibia. Developed POST, Five Es, and Multiple Entry Points frameworks.</p></div></div>
+        <div class="cred-card"><svg class="cred-icon" viewBox="0 0 64 64" fill="none" stroke="#D4856A" stroke-width="1.2"><polygon points="32,8 52,24 52,56 12,56 12,24"/><rect x="24" y="40" width="16" height="16" stroke="#A7B9A5"/><circle cx="32" cy="28" r="6"/><path d="M28 28h8M32 24v8" stroke="#A7B9A5" stroke-width="1"/></svg><div class="cred-content"><h4>Co-Founder</h4><p class="cred-org">Tangram</p><p class="cred-desc">AI-powered lesson planning built on 15+ years of coaching teachers on the ground and virtually—since 2009. Personalization that actually works.</p></div></div>
+        <div class="cred-card"><svg class="cred-icon" viewBox="0 0 64 64" fill="none" stroke="#D4856A" stroke-width="1.2"><rect x="12" y="8" width="40" height="48" rx="2"/><line x1="20" y1="20" x2="44" y2="20"/><line x1="20" y1="28" x2="44" y2="28"/><line x1="20" y1="36" x2="36" y2="36"/><path d="M36 44l6 6 10-14" stroke="#A7B9A5" stroke-width="1.5"/></svg><div class="cred-content"><h4>Policy & Evaluation Leadership</h4><p class="cred-org">New York State Education Department</p><p class="cred-desc">Co-authored the NYS Virtual Schools Handbook and the Quality Remote/Hybrid Teaching (QRT) framework. Directed evaluation of the CARES Act TRLE project to reimagine online teaching and learning statewide.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-ink">
+    <img src="images/image8.png" alt="" class="test-dancer collage">
+    <img src="images/image1.png" alt="" class="test-butterfly collage">
+    <div class="container">
+      <div class="section-header"><p class="section-eyebrow">What People Say</p><h2 class="section-title">From Audiences & Collaborators</h2></div>
+      <div class="testimonials-grid">
+        <div class="testimonial"><p class="testimonial-text">"Nicole reframed how our entire faculty thinks about AI in the classroom. We came expecting tips and tricks—we left with a philosophy."</p><div class="testimonial-author"><div class="testimonial-avatar"></div><div><p class="testimonial-name">[Name]</p><p class="testimonial-role">Dean, School of Education</p></div></div></div>
+        <div class="testimonial"><p class="testimonial-text">"The Fourth Space framework gave us language for what we'd been struggling to articulate. Finally, a way to talk about AI that isn't about cheating."</p><div class="testimonial-author"><div class="testimonial-avatar"></div><div><p class="testimonial-name">[Name]</p><p class="testimonial-role">District Curriculum Director</p></div></div></div>
+        <div class="testimonial"><p class="testimonial-text">"Practical and provocative in equal measure. Nicole doesn't let you off the hook—she makes you think."</p><div class="testimonial-author"><div class="testimonial-avatar"></div><div><p class="testimonial-name">[Name]</p><p class="testimonial-role">Conference Attendee, SXSW EDU</p></div></div></div>
+        <div class="testimonial"><p class="testimonial-text">"Working with Nicole on Mosaic changed how I think about what EdTech can be. She insists that tools serve teachers, not replace them."</p><div class="testimonial-author"><div class="testimonial-avatar"></div><div><p class="testimonial-name">[Name]</p><p class="testimonial-role">Product Lead, EdTech</p></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="newsletter-section">
+    <img src="images/image3.png" alt="" class="news-hand collage">
+    <img src="images/image4.png" alt="" class="news-mountains collage">
+    <div class="container">
+      <div class="newsletter-card">
+        <img src="images/image1.png" alt="Field Notes from Fourth Space" class="newsletter-butterfly">
+        <h3>Field Notes from Fourth Space</h3>
+        <p>A lab, launchpad, and letter for educators, builders, and thinkers navigating education in the AI era. New essays every week.</p>
+        <div class="newsletter-form"><input type="email" class="newsletter-input" placeholder="Your email address"><a href="https://fnfs.substack.com" target="_blank" class="btn btn-primary">Subscribe on Substack</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-cream" id="contact">
+    <img src="images/image0.png" alt="" class="contact-birds collage">
+    <img src="images/image5.png" alt="" class="contact-paper collage">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-info">
+          <h3>Let's Work Together</h3>
+          <p>Available for keynotes, workshops, panels, and consulting engagements. I work with K-12 districts, universities, EdTech companies, and conferences across the US and around the world.</p>
+          <div class="contact-methods">
+            <a href="mailto:ngalante@me.com" class="contact-method"><svg class="contact-method-icon" viewBox="0 0 64 64" fill="none" stroke="#D4856A" stroke-width="1.2"><rect x="8" y="16" width="48" height="32" rx="2"/><path d="M8 18l24 18 24-18" stroke="#A7B9A5"/></svg><div><p class="contact-method-label">Email</p><p class="contact-method-value">ngalante@me.com</p></div></a>
+            <a href="https://fnfs.substack.com" target="_blank" class="contact-method"><svg class="contact-method-icon" viewBox="0 0 64 64" fill="none" stroke="#D4856A" stroke-width="1.2"><path d="M16 12h32M16 24h32M16 36l16 16 16-16"/></svg><div><p class="contact-method-label">Newsletter</p><p class="contact-method-value">Field Notes from Fourth Space</p></div></a>
+            <a href="https://linkedin.com/in/nicole-at-mosaic" target="_blank" class="contact-method"><svg class="contact-method-icon" viewBox="0 0 64 64" fill="none" stroke="#D4856A" stroke-width="1.2"><rect x="12" y="12" width="40" height="40" rx="4"/><path d="M22 28v12M22 22v2" stroke-width="2"/><path d="M30 40V30c0-2 2-4 4-4s4 2 4 4v10" stroke-width="1.5"/></svg><div><p class="contact-method-label">LinkedIn</p><p class="contact-method-value">Connect</p></div></a>
+          </div>
+        </div>
+        <div class="contact-form">
+          <h4>Speaking Inquiry</h4>
+          <form id="contact-form" onsubmit="submitForm(event)">
+            <div class="form-row"><div class="form-group"><label class="form-label">Name</label><input type="text" class="form-input" id="form-name" placeholder="Your name" required></div><div class="form-group"><label class="form-label">Email</label><input type="email" class="form-input" id="form-email" placeholder="you@organization.com" required></div></div>
+            <div class="form-group"><label class="form-label">Organization</label><input type="text" class="form-input" id="form-org" placeholder="School, district, company, or conference"></div>
+            <div class="form-row"><div class="form-group"><label class="form-label">Event Type</label><select class="form-select" id="form-type"><option>Select...</option><option>Keynote</option><option>Workshop (half-day)</option><option>Workshop (full-day)</option><option>Panel</option><option>Consulting</option><option>Other</option></select></div><div class="form-group"><label class="form-label">Tentative Date</label><input type="text" class="form-input" id="form-date" placeholder="Month / Year"></div></div>
+            <div class="form-group"><label class="form-label">Tell me about your event</label><textarea class="form-textarea" id="form-message" placeholder="Audience, goals, context..."></textarea></div>
+            <button type="submit" class="btn btn-primary" style="width: 100%;">Send Inquiry</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <img src="images/image1.png" alt="" class="footer-butterfly collage">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand"><div class="footer-logo"><img src="images/image2.png" alt="Nicole Galante" class="footer-logo-icon"><span class="footer-logo-text">Nicole Galante</span></div><p>Education strategist, speaker, and author helping institutions navigate teaching and learning in the age of AI.</p></div>
+        <div class="footer-col"><h5>Navigate</h5><a href="#speaking">Speaking</a><a href="#book">The Book</a><a href="#framework">Framework</a><a href="#about">About</a><a href="#contact">Contact</a></div>
+        <div class="footer-col"><h5>Work</h5><a href="https://fnfs.substack.com" target="_blank">Substack</a><a href="https://stonybrook.edu/spd" target="_blank">SBU MALS</a><a href="https://mosaicip.com" target="_blank">Mosaic</a><a href="https://gettangram.com" target="_blank">Tangram</a></div>
+        <div class="footer-col"><h5>Connect</h5><a href="mailto:ngalante@me.com">ngalante@me.com</a><a href="https://linkedin.com/in/nicole-at-mosaic" target="_blank">LinkedIn</a></div>
+      </div>
+      <div class="footer-bottom"><p>© 2026 Nicole Galante. All rights reserved.</p><div class="footer-social"><a href="https://linkedin.com/in/nicole-at-mosaic" target="_blank">in</a><a href="https://fnfs.substack.com" target="_blank">✎</a></div></div>
+    </div>
+  </footer>
+
+
+  <script>
+    // Mobile menu toggle
+    const mobileBtn = document.querySelector('.mobile-menu-btn');
+    const navLinks = document.querySelector('.nav-links');
+    
+    mobileBtn.addEventListener('click', () => {
+      navLinks.classList.toggle('nav-open');
+      mobileBtn.textContent = navLinks.classList.contains('nav-open') ? '✕' : '☰';
+    });
+
+    // Close menu when clicking a link
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('nav-open');
+        mobileBtn.textContent = '☰';
+      });
+    });
+
+    // Form handler - opens mailto
+    function submitForm(e) {
+      e.preventDefault();
+      const name = document.getElementById('form-name').value;
+      const email = document.getElementById('form-email').value;
+      const org = document.getElementById('form-org').value;
+      const type = document.getElementById('form-type').value;
+      const date = document.getElementById('form-date').value;
+      const message = document.getElementById('form-message').value;
+      
+      const subject = encodeURIComponent(`Speaking Inquiry: ${type} - ${org || 'Organization'}`);
+      const body = encodeURIComponent(
+        `Name: ${name}\nEmail: ${email}\nOrganization: ${org}\nEvent Type: ${type}\nTentative Date: ${date}\n\nMessage:\n${message}`
+      );
+      
+      window.location.href = `mailto:ngalante@me.com?subject=${subject}&body=${body}`;
+    }
+  </script>
+</body>
+</html>
