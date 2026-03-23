@@ -21,8 +21,8 @@
       --clay: #D4856A;
       --forest: #2d3d2d;
       --text: #2d2a2e;
-      --text-secondary: #5a5658;
-      --text-muted: #8a8688;
+      --text-secondary: #4a4648;
+      --text-muted: #666666;
       --white: #ffffff;
       --border: #e8e4df;
     }
@@ -350,18 +350,74 @@
       .protocol-toggles { gap: 1.5rem; }
       .example-step { grid-template-columns: 1fr; }
     }
+  
+    /* Accessibility */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .skip-link {
+      position: absolute;
+      top: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--forest);
+      color: var(--cream);
+      padding: 12px 24px;
+      z-index: 9999;
+      font-size: 14px;
+      text-decoration: none;
+      transition: top 0.3s;
+    }
+    .skip-link:focus {
+      top: 10px;
+    }
+    *:focus {
+      outline: 2px solid var(--ink-fig);
+      outline-offset: 2px;
+    }
+    *:focus:not(:focus-visible) {
+      outline: none;
+    }
+    *:focus-visible {
+      outline: 2px solid var(--ink-fig);
+      outline-offset: 2px;
+    }
+    .btn:focus-visible, .toggle-option:focus-visible, a:focus-visible {
+      outline: 2px solid var(--ink-fig);
+      outline-offset: 2px;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      html { scroll-behavior: auto; }
+    }
+    
   </style>
 </head>
 <body>
 
-  <header>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <header role="banner">
     <div class="container">
       <a href="index.html" class="logo">Nicole Galante</a>
       <a href="index.html" class="back-link">← Back to main site</a>
     </div>
   </header>
 
-  <main>
+  <main id="main-content">
     <section class="hero">
       <div class="container">
         <p class="hero-eyebrow">Interactive Tool</p>
@@ -377,15 +433,15 @@
           <div class="toggle-group">
             <span class="toggle-label">Visibility</span>
             <div class="toggle-switch">
-              <button class="toggle-option active" data-group="visibility" data-value="public">Public</button>
-              <button class="toggle-option" data-group="visibility" data-value="private">Private</button>
+              <button class="toggle-option active" role="button" aria-pressed="true" tabindex="0" data-group="visibility" data-value="public">Public</button>
+              <button class="toggle-option" role="button" aria-pressed="false" tabindex="0" data-group="visibility" data-value="private">Private</button>
             </div>
           </div>
           <div class="toggle-group">
             <span class="toggle-label">Mode</span>
             <div class="toggle-switch">
-              <button class="toggle-option active" data-group="mode" data-value="individual">Individual</button>
-              <button class="toggle-option" data-group="mode" data-value="communal">Communal</button>
+              <button class="toggle-option active" role="button" aria-pressed="true" tabindex="0" data-group="mode" data-value="individual">Individual</button>
+              <button class="toggle-option" role="button" aria-pressed="false" tabindex="0" data-group="mode" data-value="communal">Communal</button>
             </div>
           </div>
         </div>
@@ -400,52 +456,52 @@
           
           <!-- Level 1 -->
           <div class="grid-level"><span class="level-num">1</span><span class="level-name">Remember</span></div>
-          <div class="grid-cell" data-level="1" data-col="reflection">What happened?</div>
-          <div class="grid-cell" data-level="1" data-col="identity">Which space was I in?</div>
-          <div class="grid-cell" data-level="1" data-col="contact">What conflict arose?</div>
-          <div class="grid-cell" data-level="1" data-col="justice">Which issues emerged?</div>
+          <div class="grid-cell" tabindex="0" data-level="1" data-col="reflection">What happened?</div>
+          <div class="grid-cell" tabindex="0" data-level="1" data-col="identity">Which space was I in?</div>
+          <div class="grid-cell" tabindex="0" data-level="1" data-col="contact">What conflict arose?</div>
+          <div class="grid-cell" tabindex="0" data-level="1" data-col="justice">Which issues emerged?</div>
           
           <!-- Level 2 -->
           <div class="grid-level alt"><span class="level-num">2</span><span class="level-name">Understand</span></div>
-          <div class="grid-cell alt" data-level="2" data-col="reflection">Why does it matter?</div>
-          <div class="grid-cell alt" data-level="2" data-col="identity">Which identity aspects?</div>
-          <div class="grid-cell alt" data-level="2" data-col="contact">Which cultures met?</div>
-          <div class="grid-cell alt" data-level="2" data-col="justice">Why address this?</div>
+          <div class="grid-cell alt" tabindex="0" data-level="2" data-col="reflection">Why does it matter?</div>
+          <div class="grid-cell alt" tabindex="0" data-level="2" data-col="identity">Which identity aspects?</div>
+          <div class="grid-cell alt" tabindex="0" data-level="2" data-col="contact">Which cultures met?</div>
+          <div class="grid-cell alt" tabindex="0" data-level="2" data-col="justice">Why address this?</div>
           
           <!-- Level 3 -->
           <div class="grid-level"><span class="level-num">3</span><span class="level-name">Apply</span></div>
-          <div class="grid-cell" data-level="3" data-col="reflection">How can I use this?</div>
-          <div class="grid-cell" data-level="3" data-col="identity">How did it shape me?</div>
-          <div class="grid-cell" data-level="3" data-col="contact">How did it affect each?</div>
-          <div class="grid-cell" data-level="3" data-col="justice">What's the future impact?</div>
+          <div class="grid-cell" tabindex="0" data-level="3" data-col="reflection">How can I use this?</div>
+          <div class="grid-cell" tabindex="0" data-level="3" data-col="identity">How did it shape me?</div>
+          <div class="grid-cell" tabindex="0" data-level="3" data-col="contact">How did it affect each?</div>
+          <div class="grid-cell" tabindex="0" data-level="3" data-col="justice">What's the future impact?</div>
           
           <!-- Level 4 -->
           <div class="grid-level alt"><span class="level-num">4</span><span class="level-name">Analyze</span></div>
-          <div class="grid-cell alt" data-level="4" data-col="reflection">What patterns emerge?</div>
-          <div class="grid-cell alt" data-level="4" data-col="identity">What identity patterns?</div>
-          <div class="grid-cell alt" data-level="4" data-col="contact">Where was the struggle?</div>
-          <div class="grid-cell alt" data-level="4" data-col="justice">What issue patterns?</div>
+          <div class="grid-cell alt" tabindex="0" data-level="4" data-col="reflection">What patterns emerge?</div>
+          <div class="grid-cell alt" tabindex="0" data-level="4" data-col="identity">What identity patterns?</div>
+          <div class="grid-cell alt" tabindex="0" data-level="4" data-col="contact">Where was the struggle?</div>
+          <div class="grid-cell alt" tabindex="0" data-level="4" data-col="justice">What issue patterns?</div>
           
           <!-- Level 5 -->
           <div class="grid-level"><span class="level-num">5</span><span class="level-name">Evaluate</span></div>
-          <div class="grid-cell" data-level="5" data-col="reflection">How well did I do?</div>
-          <div class="grid-cell" data-level="5" data-col="identity">How am I developing?</div>
-          <div class="grid-cell" data-level="5" data-col="contact">How did each group fare?</div>
-          <div class="grid-cell" data-level="5" data-col="justice">Was it addressed?</div>
+          <div class="grid-cell" tabindex="0" data-level="5" data-col="reflection">How well did I do?</div>
+          <div class="grid-cell" tabindex="0" data-level="5" data-col="identity">How am I developing?</div>
+          <div class="grid-cell" tabindex="0" data-level="5" data-col="contact">How did each group fare?</div>
+          <div class="grid-cell" tabindex="0" data-level="5" data-col="justice">Was it addressed?</div>
           
           <!-- Level 6 -->
           <div class="grid-level alt"><span class="level-num">6</span><span class="level-name">Create</span></div>
-          <div class="grid-cell alt" data-level="6" data-col="reflection">What will I do next?</div>
-          <div class="grid-cell alt" data-level="6" data-col="identity">What's my next growth?</div>
-          <div class="grid-cell alt" data-level="6" data-col="contact">How will I engage next?</div>
-          <div class="grid-cell alt" data-level="6" data-col="justice">What action will I take?</div>
+          <div class="grid-cell alt" tabindex="0" data-level="6" data-col="reflection">What will I do next?</div>
+          <div class="grid-cell alt" tabindex="0" data-level="6" data-col="identity">What's my next growth?</div>
+          <div class="grid-cell alt" tabindex="0" data-level="6" data-col="contact">How will I engage next?</div>
+          <div class="grid-cell alt" tabindex="0" data-level="6" data-col="justice">What action will I take?</div>
           
           <!-- Level 7 -->
           <div class="grid-level"><span class="level-num">7</span><span class="level-name">Inspire</span></div>
-          <div class="grid-cell" data-level="7" data-col="reflection">How can I inspire others?</div>
-          <div class="grid-cell" data-level="7" data-col="identity">How can I shape others?</div>
-          <div class="grid-cell" data-level="7" data-col="contact">How can I bridge divides?</div>
-          <div class="grid-cell" data-level="7" data-col="justice">How can I inspire action?</div>
+          <div class="grid-cell" tabindex="0" data-level="7" data-col="reflection">How can I inspire others?</div>
+          <div class="grid-cell" tabindex="0" data-level="7" data-col="identity">How can I shape others?</div>
+          <div class="grid-cell" tabindex="0" data-level="7" data-col="contact">How can I bridge divides?</div>
+          <div class="grid-cell" tabindex="0" data-level="7" data-col="justice">How can I inspire action?</div>
         </div>
 
         <div class="central-question">
@@ -490,7 +546,7 @@
     </section>
   </main>
 
-  <footer>
+  <footer role="contentinfo">
     <div class="container">
       <p>Fourth Space Reflection Protocol © 2026 <a href="index.html">Nicole Galante, Ph.D.</a></p>
       <p style="margin-top: 0.5rem;">From <em>Mentor from the Center: Reimagining Education for an AI-Driven World</em></p>
@@ -504,6 +560,10 @@
         const group = btn.dataset.group;
         document.querySelectorAll(`[data-group="${group}"]`).forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
+        btn.setAttribute('aria-pressed', 'true');
+        btn.parentElement.querySelectorAll('.toggle-option').forEach(b => {
+          if (b !== btn) b.setAttribute('aria-pressed', 'false');
+        });
       });
     });
 
@@ -562,6 +622,28 @@
     document.getElementById('close-example').addEventListener('click', () => {
       document.getElementById('example-panel').classList.remove('visible');
     });
+  
+    // Keyboard support for toggles
+    document.querySelectorAll('.toggle-option').forEach(btn => {
+      btn.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          btn.click();
+        }
+      });
+    });
+
+  
+    // Keyboard support for grid cells
+    document.querySelectorAll('.grid-cell, .pg-clickable').forEach(cell => {
+      cell.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          cell.click();
+        }
+      });
+    });
+
   </script>
 
 </body>
